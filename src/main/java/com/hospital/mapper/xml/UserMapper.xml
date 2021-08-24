@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hospital.mapper.UserMapper">
+
+    <resultMap id="userMap" type="com.hospital.entity.User">
+        <id column="u_id" property="userId"/>
+        <result column="u_name" property="userName"/>
+        <result column="u_password" property="userPassword"/>
+        <result column="u_role" property="userRole"/>
+        <result column="u_nickname" property="userNickName"/>
+        <result column="u_status" property="userStatus"/>
+    </resultMap>
+
+    <!--获取user集合-->
+    <select id="getAllUser" resultType="com.hospital.entity.User" resultMap="userMap">
+        SELECT u_id, u_name, u_password, u_role,u_nickname,u_status FROM ht_user
+    </select>
+    <!--根据nickName获取数据信息-->
+    <select id="getUserByNickName" resultType="com.hospital.entity.User" resultMap="userMap">
+        SELECT * FROM ht_user WHERE u_nickname = #{u_nickname}
+    </select>
+
+
+</mapper>
