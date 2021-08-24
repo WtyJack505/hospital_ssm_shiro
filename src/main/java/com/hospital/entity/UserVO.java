@@ -4,41 +4,52 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @version 1.0
- * @title
+ * @title:USERVO
  * @author:WTY
  * @projectName:hospital_ssm_shiro
  * @date 2021/8/24
  * @description:TODO
  */
-public class User implements Serializable {
+public class UserVO implements Serializable {
 
-    private static final long serialVersionUID = 1375494403732116948L;
+    private static final long serialVersionUID = 1L;
 
     private Integer userId;
-    
+
     private String userName;
-    
+
     private Integer userSex;
-    
+
     private Integer userAge;
-    
+
     private Integer userPhone;
-    
+
     private String userNickName;
-    
+
     private String userPassword;
-    
+
     private Integer userType;
-    
+
     private Integer userStatus;
-    
+
     @JsonFormat(pattern = "yyyy--MM--dd HH:mm:ss")
     private Date userCreateDate;
-    
+
     private String userDeploymentId;
+
+    private List<Role> rolesList;
+
+    private String deploymentName;
+
+    private String roleIds;
+
+    private Date createDateStart;
+
+    private Date createDateEnd;
 
     public Integer getUserId() {
         return userId;
@@ -128,20 +139,43 @@ public class User implements Serializable {
         this.userDeploymentId = userDeploymentId;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", userSex=" + userSex +
-                ", userAge=" + userAge +
-                ", userPhone=" + userPhone +
-                ", userNickName='" + userNickName + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", userType=" + userType +
-                ", userStatus=" + userStatus +
-                ", userCreateDate=" + userCreateDate +
-                ", userDeploymentId='" + userDeploymentId + '\'' +
-                '}';
+    public List<Role> getRolesList() {
+        return rolesList;
+    }
+
+    public void setRolesList(List<Role> rolesList) {
+        this.rolesList = rolesList;
+    }
+
+    public String getDeploymentName() {
+        return deploymentName;
+    }
+
+    public void setDeploymentName(String deploymentName) {
+        this.deploymentName = deploymentName;
+    }
+
+    public String getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(String roleIds) {
+        this.roleIds = roleIds;
+    }
+
+    public Date getCreateDateStart() {
+        return createDateStart;
+    }
+
+    public void setCreateDateStart(Date createDateStart) {
+        this.createDateStart = createDateStart;
+    }
+
+    public Date getCreateDateEnd() {
+        return createDateEnd;
+    }
+
+    public void setCreateDateEnd(Date createDateEnd) {
+        this.createDateEnd = createDateEnd;
     }
 }

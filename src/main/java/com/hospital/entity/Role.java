@@ -1,6 +1,19 @@
 package com.hospital.entity;
 
-public class Role {
+import java.io.Serializable;
+
+/**
+ * @version 1.0
+ * @title
+ * @author:WTY
+ * @projectName:hospital_ssm_shiro
+ * @date 2021/8/24
+ * @description:TODO
+ */
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = 4461899451505017847L;
+
     private Integer rId;
 
     private String rName;
@@ -8,6 +21,8 @@ public class Role {
     private String rDesc;
 
     private String rStatus;
+
+    private Integer rSeq;
 
     public Integer getrId() {
         return rId;
@@ -39,5 +54,24 @@ public class Role {
 
     public void setrStatus(String rStatus) {
         this.rStatus = rStatus == null ? null : rStatus.trim();
+    }
+
+    public Integer getrSeq() {
+        return rSeq;
+    }
+
+    public void setrSeq(Integer rSeq) {
+        this.rSeq = rSeq;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "rId=" + rId +
+                ", rName='" + rName + '\'' +
+                ", rDesc='" + rDesc + '\'' +
+                ", rStatus='" + rStatus + '\'' +
+                ", rSeq=" + rSeq +
+                '}';
     }
 }
