@@ -4,5 +4,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     <!--mybatis配置-->
-    <import resource="classpath*:spring-mybatis.xml"/>
+    <import resource="classpath*:spring/applicationContext-mybatis.xml"/>
 </beans>

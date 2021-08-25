@@ -24,5 +24,15 @@ public interface UserService {
      */
     User findUserById(Long id);
 
+    /**
+     * 通过登录名查找用户信息
+     *
+     * @param userNickName
+     * @return
+     */
+    User findUserByLoginName(String userNickName);
+
+
+
 
 }

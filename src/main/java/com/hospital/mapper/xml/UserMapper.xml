@@ -49,6 +49,7 @@
         <include refid="Base_Column_List"/>
         FROM ht_user
     </select>
+
     <!--根据nickName获取数据信息-->
     <select id="getUserByNickName" resultType="com.hospital.entity.User" resultMap="BaseResultMap">
         SELECT * FROM ht_user WHERE u_nickname = #{u_nickname}
@@ -59,6 +60,13 @@
         <include refid="Base_Column_List"/>
         FROM ht_user
         WHERE u_id = #{u_id}
+    </select>
+
+    <select id="findUserByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ht_user
+        WHERE BINARY u_nickname = #{u_nickName}
     </select>
 
 

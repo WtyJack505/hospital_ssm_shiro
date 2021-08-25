@@ -18,7 +18,7 @@ public class ShiroUser implements Serializable {
     private static final long serialVersionUID = 1633127907812338268L;
 
     public Long id;
-
+    /** loginName IS userNickName**/
     public String loginName;
 
     public String name;

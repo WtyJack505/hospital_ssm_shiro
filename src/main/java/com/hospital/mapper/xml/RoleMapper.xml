@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hospital.mapper.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.hospital.entity.Role">
+        <id column="r_id" property="rId" jdbcType="BIGINT"/>
+        <result column="r_name" property="rName" jdbcType="VARCHAR"/>
+        <result column="r_seq" property="rSeq" jdbcType="TINYINT"/>
+        <result column="r_desc" property="rDesc" jdbcType="VARCHAR"/>
+        <result column="r_status" property="rStatus" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <select id="findRoleResourceListByRoleId" resultType="java.util.HashMap" parameterType="java.lang.Long">
+        SELECT
+            e.id AS id,
+            s.permission AS permission
+        FROM ht_role r
+            LEFT JOIN ht_role_resource e ON r.r_id = e.role_id
+            LEFT JOIN ht_resource s ON e.resource_id = s.id
+        WHERE
+            r.r_id = #{id}
+    </select>
+
+
+
+</mapper>

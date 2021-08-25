@@ -32,5 +32,15 @@ public interface UserMapper {
      */
     User findUserById(Long id);
 
+    /**
+     * 通過登陸名字（昵稱）查找 用戶
+     *
+     * @param userNickName
+     * @return
+     */
+    User findUserByLoginName(String userNickName);
+
+
+
 
 }
