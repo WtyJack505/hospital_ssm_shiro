@@ -16,4 +16,13 @@ public interface UserService {
      * @return
      */
     List<User> getAllUser();
+
+    /**
+     * 根据id查出用户
+     * @param id
+     * @return
+     */
+    User findUserById(Long id);
+
+
 }

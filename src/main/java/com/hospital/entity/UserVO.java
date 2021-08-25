@@ -18,7 +18,7 @@ public class UserVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer userId;
+    private Long userId;
 
     private String userName;
 
@@ -26,7 +26,7 @@ public class UserVO implements Serializable {
 
     private Integer userAge;
 
-    private Integer userPhone;
+    private String userPhone;
 
     private String userNickName;
 
@@ -36,7 +36,7 @@ public class UserVO implements Serializable {
 
     private Integer userStatus;
 
-    @JsonFormat(pattern = "yyyy--MM--dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date userCreateDate;
 
     private String userDeploymentId;
@@ -51,11 +51,11 @@ public class UserVO implements Serializable {
 
     private Date createDateEnd;
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -83,11 +83,11 @@ public class UserVO implements Serializable {
         this.userAge = userAge;
     }
 
-    public Integer getUserPhone() {
+    public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(Integer userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 

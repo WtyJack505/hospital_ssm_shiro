@@ -5,22 +5,60 @@
 
 <mapper namespace="com.hospital.mapper.UserMapper">
 
-    <resultMap id="userMap" type="com.hospital.entity.User">
-        <id column="u_id" property="userId"/>
-        <result column="u_name" property="userName"/>
-        <result column="u_password" property="userPassword"/>
-        <result column="u_role" property="userRole"/>
-        <result column="u_nickname" property="userNickName"/>
-        <result column="u_status" property="userStatus"/>
+    <resultMap id="BaseResultMap" type="com.hospital.entity.User">
+        <id column="u_id" property="userId" jdbcType="BIGINT"/>
+        <result column="u_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="u_sex" property="userSex" jdbcType="INTEGER"/>
+        <result column="u_age" property="userAge" jdbcType="INTEGER"/>
+        <result column="u_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="u_nickname" property="userNickName" jdbcType="VARCHAR"/>
+        <result column="u_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="u_type" property="userType" jdbcType="INTEGER"/>
+        <result column="u_status" property="userStatus" jdbcType="INTEGER"/>
+        <result column="u_createdate" property="userCreateDate" jdbcType="TIMESTAMP"/>
+        <result column="d_id" property="userDeploymentId" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <resultMap id="userVoResultMap" type="com.hospital.entity.UserVO">
+        <id column="u_id" property="userId" jdbcType="BIGINT"/>
+        <result column="u_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="u_sex" property="userSex" jdbcType="INTEGER"/>
+        <result column="u_age" property="userAge" jdbcType="INTEGER"/>
+        <result column="u_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="u_nickname" property="userNickName" jdbcType="VARCHAR"/>
+        <result column="u_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="u_type" property="userType" jdbcType="INTEGER"/>
+        <result column="u_status" property="userStatus" jdbcType="INTEGER"/>
+        <result column="u_createdate" property="userCreateDate" jdbcType="TIMESTAMP"/>
+        <result column="d_id" property="userDeploymentId" jdbcType="VARCHAR"/>
+
+        <result column="deploymentName" property="deploymentName" jdbcType="VARCHAR"/>
+        <collection property="rolesList" ofType="com.hospital.entity.Role">
+            <id column="r_id" property="rId"/>
+            <result column="r_name" property="rName"/>
+        </collection>
     </resultMap>
 
+    <sql id="Base_Column_List">
+        u_id, u_name, u_sex, u_age, u_phone, u_nickname, u_password, u_type, u_status, u_createdate, d_id
+    </sql>
+
     <!--获取user集合-->
-    <select id="getAllUser" resultType="com.hospital.entity.User" resultMap="userMap">
-        SELECT u_id, u_name, u_password, u_role,u_nickname,u_status FROM ht_user
+    <select id="getAllUser" resultType="com.hospital.entity.User" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ht_user
     </select>
     <!--根据nickName获取数据信息-->
-    <select id="getUserByNickName" resultType="com.hospital.entity.User" resultMap="userMap">
+    <select id="getUserByNickName" resultType="com.hospital.entity.User" resultMap="BaseResultMap">
         SELECT * FROM ht_user WHERE u_nickname = #{u_nickname}
+    </select>
+
+    <select id="findUserById" resultMap="BaseResultMap" resultType="com.hospital.entity.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ht_user
+        WHERE u_id = #{u_id}
     </select>
 
 

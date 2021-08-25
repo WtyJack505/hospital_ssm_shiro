@@ -9,13 +9,15 @@ import java.util.List;
  * @author:WTY
  * @projectName:hospital_ssm_shiro
  * @date 2021/8/24
- * @description:TODO
+ * @description:
+ * 自定义Authentication对象，
+ * 使得Subject除了携带用户的登录名外还可以携带更多信息
  */
 public class ShiroUser implements Serializable {
 
     private static final long serialVersionUID = 1633127907812338268L;
 
-    public Integer id;
+    public Long id;
 
     public String loginName;
 
@@ -23,7 +25,7 @@ public class ShiroUser implements Serializable {
 
     public List<Long> roleList;
 
-    public ShiroUser(Integer id, String loginName, String name, List<Long> roleList){
+    public ShiroUser(Long id, String loginName, String name, List<Long> roleList){
         this.id = id;
         this.loginName = loginName;
         this.name = name;
@@ -41,8 +43,6 @@ public class ShiroUser implements Serializable {
     public String toString() {
         return loginName;
     }
-
-
 
 
 }

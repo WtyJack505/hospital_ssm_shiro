@@ -14,7 +14,7 @@ public class Role implements Serializable {
 
     private static final long serialVersionUID = 4461899451505017847L;
 
-    private Integer rId;
+    private Long rId;
 
     private String rName;
 
@@ -24,11 +24,11 @@ public class Role implements Serializable {
 
     private Integer rSeq;
 
-    public Integer getrId() {
+    public Long getrId() {
         return rId;
     }
 
-    public void setrId(Integer rId) {
+    public void setrId(Long rId) {
         this.rId = rId;
     }
 

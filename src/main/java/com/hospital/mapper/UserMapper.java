@@ -1,14 +1,17 @@
 package com.hospital.mapper;
 
 import com.hospital.entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * @author wty
- * on 2021/7/11
+ * @date 2021/7/11
  */
+@Component
 public interface UserMapper {
+
     /**
      * 获取所有user
      * @return
@@ -21,6 +24,13 @@ public interface UserMapper {
      * @return
      */
     List<User> getUserByNickName(String nickName);
+
+    /**
+     * 根据id查找用户信息
+     * @param id
+     * @return
+     */
+    User findUserById(Long id);
 
 
 }

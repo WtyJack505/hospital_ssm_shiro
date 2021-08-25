@@ -25,7 +25,7 @@ public class UserController {
     private UserService userService;
 
     @ResponseBody
-    @RequestMapping(value="/list",method = RequestMethod.GET,produces="application/json;charset=UTF-8")
+    @RequestMapping(value="/list")
     public List<User> getAllUser(){
         return userService.getAllUser();
     }

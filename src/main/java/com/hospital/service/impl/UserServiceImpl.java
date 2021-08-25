@@ -23,4 +23,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUser() {
         return userMapper.getAllUser();
     }
+
+    @Override
+    public User findUserById(Long id) {
+        return userMapper.findUserById(id);
+    }
 }
