@@ -26,7 +26,7 @@
     </bean>
 
     <!-- 項目自定义的Realm -->
-    <bean id="shiroDbRealm" class="SystemManage.Common.shiro.PersonRealm">
+    <bean id="shiroDbRealm" class="com.hospital.common.shiro.PersonRealm">
         <!-- 配置凭证匹配器 -->
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">

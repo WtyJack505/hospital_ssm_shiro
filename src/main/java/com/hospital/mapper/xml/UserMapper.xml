@@ -61,7 +61,7 @@
         FROM ht_user
         WHERE u_id = #{u_id}
     </select>
-
+    <!--BINARY 区分大小写-->
     <select id="findUserByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>

@@ -32,6 +32,12 @@ public class PersonRealm extends AuthorizingRealm {
     @Autowired
     private RoleService roleService;
 
+    /**
+     * shiro的权限认证
+     *
+     * @param principalCollection
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         ShiroUser shiroUser = (ShiroUser) principalCollection.getPrimaryPrincipal();
@@ -73,13 +79,13 @@ public class PersonRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
             throws AuthenticationException {
         String userNickName = (String) token.getPrincipal();
-        //通過登錄名找用戶
+        // 通过登录名找用戶
         User user = userService.findUserByLoginName(userNickName);
         if (user == null){
             throw new UnknownAccountException();
         }
-        //账号未启用
-        if (user.getUserStatus() == 1){
+        // 账号未启用
+        if (user.getUserStatus() == 0){
             throw new DisabledAccountException();
         }
         // 根据用户id 查询出它所对应的角色id , 在ht_user_role表中查询
@@ -87,7 +93,7 @@ public class PersonRealm extends AuthorizingRealm {
         // 将数据放到 ShiroUser(VO) 中。后面将信息存进shiro中。
         ShiroUser shiroUser = new ShiroUser(user.getUserId(), user.getUserNickName(),
                 user.getUserName(), roleList);
-        //加盐
+        // 加盐
         ByteSource salt = ByteSource.Util.bytes(user.getUserNickName());
         // 最后一步交给 shiro
         // 认证缓存信息

@@ -37,7 +37,7 @@
             layui.use(['layer','from'],function (){
                 var layer = layui.layer,
                     form =layui.form;
-                layer.alert('测试账号：test 密码：123456',{
+                layer.alert('测试账号：admin 密码：123456',{
                     closeBtn: false,
                     offset: 't',
                     anim: 1
@@ -72,17 +72,17 @@
 </head>
 <body>
 <div class="main layui-layout animated shake larry-delay2" id="larry_login" style="margin-top: 94px;">
-    <div class="title">后台管理系统</div>
+    <div class="title">WTY(医务)后台管理系统</div>
     <p class="info">登录中心</p>
     <div class="user-info">
         <div class="admin"><img src="${path}/static/images/admin.png"></div>
         <form class="layui-form" id="login" method="post">
             <div class="layui-form-item">
-                <label class="layui-form-label">用户名:</label>
+                <label class="layui-form-label" style="color: #ffffff">用户名:</label>
                 <input type="text" name="username" style="ime-mode:disabled" required lay-verify="required" aautocomplete="off" class="layui-input larry-input" placeholder="请输入账号" autocomplete="off">
             </div>
             <div class="layui-form-item" id="password">
-                <label class="layui-form-label">密码:</label>
+                <label class="layui-form-label" style="color: #ffffff">密码:</label>
                 <input type="password" name="password" style="ime-mode:disabled" required lay-verify="required|password" aautocomplete="off" class="layui-input larry-input" placeholder="请输入密码" autocomplete="off">
             </div>
             <div class="layui-form-item larry-verfiy-code" id="larry_code">
@@ -99,7 +99,7 @@
             </div>
         </form>
     </div>
-    <div class="copy-right"><span style="color:white">Hospital Management System Design by wty</span></div>
+    <div class="copy-right"><span style="color:#ffffff">Hospital Management System Design by wty</span></div>
 </div>
 </body>
 </html>

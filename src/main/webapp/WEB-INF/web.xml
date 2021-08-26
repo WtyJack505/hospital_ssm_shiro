@@ -3,7 +3,18 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
 
-  <!-- 针对POST请求设置编码过滤器 -->
+  <!--spring的其他配置文件(包括mybatis配置文件) -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/applicationContext-*.xml</param-value>
+  </context-param>
+
+  <!-- Spring监听器 监听加载相关配置文件-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- 针对POST请求设置编码过滤器 (编码的最后一道关卡)-->
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -16,27 +27,16 @@
       <param-value>true</param-value>
     </init-param>
   </filter>
+  <!-- 编码拦截 -->
   <filter-mapping>
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-  <!-- Spring监听器 监听加载相关配置文件-->
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
   <!--防止Spring内存溢出监听器-->
   <listener>
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
-
-  <!--spring的其他配置文件(包括mybatis配置文件) -->
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>
-      classpath*:spring/applicationContext-trans.xml,classpath*:spring/applicationContext-shiro.xml
-    </param-value>
-  </context-param>
 
   <!--log4j日志-->
   <context-param>
@@ -72,6 +72,20 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>SpringMVC</servlet-name>
+    <!-- mvc-dispatcher 拦截所有请求 -->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+  <context-param>
+    <param-name>spring.profiles.active</param-name>
+    <param-value>dev</param-value>
+  </context-param>
+  <context-param>
+    <param-name>spring.profiles.default</param-name>
+    <param-value>dev</param-value>
+  </context-param>
+  <context-param>
+    <param-name>spring.liveBeansView.mbeanDomain</param-name>
+    <param-value>dev</param-value>
+  </context-param>
 </web-app>

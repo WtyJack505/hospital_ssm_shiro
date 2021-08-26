@@ -14,8 +14,8 @@
 
     <context:annotation-config/>
 
-    <!-- 包含Spring的核心配置 -->
-    <!--<import resource="classpath:applicationContext-trans.xml" />-->
+    <!--MVC的注解解析器 -->
+    <mvc:annotation-driven />
 
     <!-- 扫描Controller -->
     <context:component-scan base-package="com.hospital">
@@ -24,17 +24,8 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
-    <!--MVC的注解解析器 -->
-    <mvc:annotation-driven />
-
     <!-- aspectj aop启用CGliB代理 -->
     <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
-
-    <!-- 静态资源处理器 -->
-    <mvc:default-servlet-handler />
-
-    <!-- 静态资源访问 -->
-    <mvc:resources location="/static/" mapping="/static/**"/>
 
     <!-- JSP视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -42,15 +33,23 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!-- 静态资源处理器 -->
+    <!--<mvc:default-servlet-handler />-->
+
+    <!-- 静态资源访问 -->
+    <mvc:resources location="/static/" mapping="/static/**"/>
+
     <!-- 支持Shiro对Controller的方法级AOP安全控制 begin -->
     <!-- 开启aop对类代理 -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor" >
         <property name="proxyTargetClass" value="true" />
     </bean>
+
     <!-- 让注解式授权生效 -->
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager" />
     </bean>
+
     <!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常页名作为值 -->
     <!-- shiro 权限异常处理 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
@@ -63,6 +62,8 @@
             </props>
         </property>
     </bean>
+
     <!-- 支持Shiro对Controller的方法级AOP安全控制 end-->
     <import resource="spring-scheduled.xml" />
+
 </beans>

@@ -1,5 +1,7 @@
 package com.hospital.mapper;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import java.util.Map;
  * @date 2021/8/25
  * @description:TODO
  */
+@Component
 public interface RoleMapper {
     /**
      * 通过角色 Id 资源路径

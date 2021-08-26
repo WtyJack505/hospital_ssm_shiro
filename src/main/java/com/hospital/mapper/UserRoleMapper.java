@@ -1,5 +1,7 @@
 package com.hospital.mapper;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import java.util.Map;
  * @date 2021/8/25
  * @description:TODO
  */
+@Component
 public interface UserRoleMapper {
     /**
      * 通过userId 查找 用户角色的id
@@ -19,8 +22,5 @@ public interface UserRoleMapper {
      * @return
      */
     List<Long> findRoleIdListByUserId(Long userId);
-
-
-
 
 }

@@ -1,5 +1,8 @@
 package com.hospital.service;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +14,7 @@ import java.util.Map;
  * @date 2021/8/25
  * @description:TODO
  */
+@Service
 public interface RoleService {
     /**
      * 根据用户查询id查询权限集合
