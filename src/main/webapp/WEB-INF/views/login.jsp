@@ -34,7 +34,7 @@
             if (window.parent.length>0)
                 window.parent.location=location;
             /*用户登录*/
-            layui.use(['layer','from'],function (){
+            layui.use(['layer','form'],function (){
                 var layer = layui.layer,
                     form =layui.form;
                 layer.alert('测试账号：admin 密码：123456',{
@@ -79,11 +79,11 @@
         <form class="layui-form" id="login" method="post">
             <div class="layui-form-item">
                 <label class="layui-form-label" style="color: #ffffff">用户名:</label>
-                <input type="text" name="username" style="ime-mode:disabled" required lay-verify="required" aautocomplete="off" class="layui-input larry-input" placeholder="请输入账号" autocomplete="off">
+                <input type="text" name="userNickName" style="ime-mode:disabled" required lay-verify="required" aautocomplete="off" class="layui-input larry-input" placeholder="请输入账号" autocomplete="off">
             </div>
-            <div class="layui-form-item" id="password">
+            <div class="layui-form-item" id="userPassword">
                 <label class="layui-form-label" style="color: #ffffff">密码:</label>
-                <input type="password" name="password" style="ime-mode:disabled" required lay-verify="required|password" aautocomplete="off" class="layui-input larry-input" placeholder="请输入密码" autocomplete="off">
+                <input type="password" name="userPassword" style="ime-mode:disabled" required lay-verify="required|password" aautocomplete="off" class="layui-input larry-input" placeholder="请输入密码" autocomplete="off">
             </div>
             <div class="layui-form-item larry-verfiy-code" id="larry_code">
                 <input type="text" maxlength="4" name="txtCode" class="layui-input larry-input" required lay-verify="required" placeholder="输入验证码">

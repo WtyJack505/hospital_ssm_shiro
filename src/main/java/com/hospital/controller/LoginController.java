@@ -36,7 +36,7 @@ public class LoginController extends BaseController{
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Result loginPost(String userName, String password, String txtCode, HttpSession session){
+    public Result loginPost(String userNickName, String userPassword, String txtCode, HttpSession session){
         Result result = new Result();
         //对比验证码是否正确
         if (!(txtCode.equals(session.getAttribute("code")))){
@@ -44,7 +44,7 @@ public class LoginController extends BaseController{
             return result;
         }
         Subject user = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+        UsernamePasswordToken token = new UsernamePasswordToken(userNickName, userPassword);
         try{
             user.login(token);
         }catch (UnknownAccountException e){
@@ -52,12 +52,6 @@ public class LoginController extends BaseController{
             return result;
         }catch (DisabledAccountException e){
             result.setMsg("账号未启用!");
-            return result;
-        }catch (IncorrectCredentialsException e){
-            result.setMsg("密码错误!");
-            return result;
-        }catch (RuntimeException e){
-            result.setMsg("未知错误,请刷新界面重新登录！"+ e.getMessage());
             return result;
         }
         result.setSuccess(true);

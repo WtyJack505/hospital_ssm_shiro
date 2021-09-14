@@ -61,12 +61,12 @@
         FROM ht_user
         WHERE u_id = #{u_id}
     </select>
-    <!--BINARY 区分大小写-->
+    <!--BINARY 区分大小写  根据登录名从用户表查找数据信息-->
     <select id="findUserByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>
         FROM ht_user
-        WHERE BINARY u_nickname = #{u_nickName}
+        WHERE BINARY u_nickname = #{userNickName}
     </select>
 
 

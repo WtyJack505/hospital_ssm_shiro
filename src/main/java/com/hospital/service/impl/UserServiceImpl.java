@@ -5,7 +5,6 @@ import com.hospital.mapper.UserMapper;
 import com.hospital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -30,6 +29,12 @@ public class UserServiceImpl implements UserService {
         return userMapper.findUserById(id);
     }
 
+    /**
+     * 根据登录名即nickName查找用户
+     *
+     * @param userNickName
+     * @return
+     */
     @Override
     public User findUserByLoginName(String userNickName) {
         return userMapper.findUserByLoginName(userNickName);

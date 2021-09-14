@@ -33,44 +33,14 @@ public class PersonRealm extends AuthorizingRealm {
     private RoleService roleService;
 
     /**
-     * shiro的权限认证
-     *
-     * @param principalCollection
-     * @return
-     */
-    @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        ShiroUser shiroUser = (ShiroUser) principalCollection.getPrimaryPrincipal();
-        List<Long> roleList = shiroUser.roleList;
-        Set<String> urlSet = new HashSet<String>();
-        for (Long roleId : roleList){
-            List<Map<Long,String>> roleResourceList = roleService.findRoleResourceListByRoleId(roleId);
-            if (roleResourceList != null) {
-                for (Map<Long, String> map : roleResourceList) {
-                    if (StringUtils.isNoneBlank(map.get("permission"))) {
-                        urlSet.add(map.get("permission"));
-                    }
-                }
-            }
-        }
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.addStringPermissions(urlSet);
-        return info;
-    }
-
-    /**
-     * 清除当前用户权限信息
-     */
-    public void clearCached() {
-        //获取当前等的用户凭证，然后清除
-        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
-        super.clearCache(principals);
-    }
-
-    /**
      * Shiro登录认证
-     * (原理：用户提交 用户名和密码  ---shiro 封装令牌  ---- realm 通过用户名将密码查询返回
-     *       ---- shiro 自动去比较查询出密码和用户输入密码是否一致---- 进行登陆控制 )
+     * (原理：
+     *     ---- 用户提交 用户名和密码
+     *     ---- shiro 封装令牌
+     *     ---- realm 通过用户名将密码查询返回
+     *     ---- shiro 自动去比较查询出密码和用户输入密码是否一致
+     *     ---- 进行登陆控制
+     *     )
      * @param token
      * @return
      * @throws AuthenticationException
@@ -101,5 +71,43 @@ public class PersonRealm extends AuthorizingRealm {
                 new SimpleAuthenticationInfo(shiroUser,user.getUserPassword(),salt,getName());
         return getInfo ;
     }
+
+    /**
+     * shiro的权限认证
+     *
+     * @param principalCollection
+     * @return
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        //拿到用户的身份信息
+        ShiroUser shiroUser = (ShiroUser) principalCollection.getPrimaryPrincipal();
+        //拿到用户的角色id
+        List<Long> roleList = shiroUser.roleList;
+        Set<String> urlSet = new HashSet<String>();
+        for (Long roleId : roleList){
+            List<Map<Long,String>> roleResourceList = roleService.findRoleResourceListByRoleId(roleId);
+            if (roleResourceList != null) {
+                for (Map<Long, String> map : roleResourceList) {
+                    if (StringUtils.isNoneBlank(map.get("permission"))) {
+                        urlSet.add(map.get("permission"));
+                    }
+                }
+            }
+        }
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addStringPermissions(urlSet);
+        return info;
+    }
+
+    /**
+     * 清除当前用户权限信息
+     */
+    public void clearCached() {
+        //获取当前等的用户凭证，然后清除
+        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+        super.clearCache(principals);
+    }
+
 
 }
