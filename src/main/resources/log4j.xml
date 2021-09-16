@@ -21,7 +21,7 @@
     <!--输出到日志文件-->
     <appender name="PROJECT" class="org.apache.log4j.DailyRollingFileAppender">
         <!-- 设置日志信息输出文件全路径名 -->
-        <param name="file" value="${catalina.home}/logs/ceshi/info.log"/>
+        <param name="file" value="logs/info.log"/>
         <!--日志文件编码-->
         <param name="encoding" value="UTF-8"/>
         <!--此日志文件级别-->
