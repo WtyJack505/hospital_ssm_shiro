@@ -45,6 +45,24 @@
       classpath:log4j.xml
     </param-value>
   </context-param>
+  <!--定义LOG4J监听器-->
+  <!-- log4j2-begin -->
+  <listener>
+    <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+  </listener>
+  <filter>
+    <filter-name>log4jServletFilter</filter-name>
+    <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>log4jServletFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+  <!-- log4j2-end -->
 
   <!--配置 shiro 过滤器 -->
   <filter>
@@ -87,5 +105,11 @@
   <context-param>
     <param-name>spring.liveBeansView.mbeanDomain</param-name>
     <param-value>dev</param-value>
+  </context-param>
+<!--首先我们定义一个可以在运行时动态的找出项目的路径WebAppRootKey,
+这么做的原因是为了在后面配置log4j输出文件路径的时候能随心配置。-->
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>amt.root</param-value>
   </context-param>
 </web-app>

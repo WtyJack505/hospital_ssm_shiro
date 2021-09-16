@@ -29,14 +29,14 @@
     <!-- 項目自定义的Realm -->
     <bean id="shiroDbRealm" class="com.hospital.common.shiro.PersonRealm">
         <!-- 配置凭证匹配器 -->
-        <property name="credentialsMatcher">
+    <!--    <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-                <!-- 加密的种类 -->
+                &lt;!&ndash; 加密的种类 &ndash;&gt;
                 <property name="hashAlgorithmName" value="MD5"></property>
-                <!-- 加密的次数 -->
+                &lt;!&ndash; 加密的次数 &ndash;&gt;
                 <property name="hashIterations" value="1024"></property>
             </bean>
-        </property>
+        </property>-->
     </bean>
 
     <!-- 用户授权信息Cache, 采用EhCache -->

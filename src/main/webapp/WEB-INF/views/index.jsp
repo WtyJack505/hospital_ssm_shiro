@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" deferredSyntaxAllowedAsLiteral="true"%>
 <%@ include file="/commons/global.jsp"%>
 <html>
 <head>
