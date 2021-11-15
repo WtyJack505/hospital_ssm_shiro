@@ -1,6 +1,8 @@
 package com.hospital.common.util;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,7 +17,7 @@ import java.util.Date;
  */
 public class DateUtil {
 
-    private static Logger LOGGER = Logger.getLogger(DateUtil.class);
+    private static Logger LOGGER = LogManager.getLogger(DateUtil.class);
 
     /**
      * Format String : yyyy-MM-dd HH:mm:ss

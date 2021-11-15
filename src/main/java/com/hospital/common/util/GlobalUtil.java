@@ -1,7 +1,8 @@
 package com.hospital.common.util;
 
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +17,7 @@ import java.util.Properties;
  */
 public class GlobalUtil {
 
-    private static Logger LOGGER = Logger.getLogger(GlobalUtil.class);
+    private static Logger LOGGER = LogManager.getLogger(GlobalUtil.class);
 
     /**
      * 文件配置路径
